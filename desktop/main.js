@@ -1,19 +1,29 @@
-const path = require('path');
-const { app, BrowserWindow } = require('electron');
-const serve = require('electron-serve');
+require('dotenv').config();
 
-const loadURL = serve({ 
-  directory: 'dist', 
-});
+const path = require('path');
+const { NODE_ENV } = require(
+  path.resolve('config'),
+);
+const reload = require('electron-reload');
+const { app, BrowserWindow } = require('electron');
+const { handleLoadURL } = require('./handlers');
+
+const isDev = () => !app.isPackaged && NODE_ENV === 'development';
 
 let mainWindow;
 
-const isDev = () => !app.isPackaged;
+if (isDev()) {
+  reload(__dirname, {
+    electron: path.resolve('node_modules', '.bin', 'electron.cmd'),
+    hardResetMethod: 'exit',
+  });
+}
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    icon: path.resolve('public', 'favicon.ico'),
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js'),
@@ -21,19 +31,13 @@ const createWindow = () => {
     show: false,
   });
 
-  if (isDev()) {
-    mainWindow.loadURL('http://localhost:8080/');
-  } else {
-    loadURL(mainWindow);
-  }
+  handleLoadURL(mainWindow, isDev());
 
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
 
-  mainWindow.once('ready-to-show', () => {
-    mainWindow.show();
-  });
+  mainWindow.once('ready-to-show', () => mainWindow.show());
 }
 
 app.on('ready', () => {

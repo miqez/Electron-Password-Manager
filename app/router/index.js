@@ -1,9 +1,12 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router';
+import { IS_ELECTRON } from '@root/config';
 
 const routes = [];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: IS_ELECTRON
+    ? createWebHashHistory()
+    : createWebHistory(),
   routes,
 });
 
