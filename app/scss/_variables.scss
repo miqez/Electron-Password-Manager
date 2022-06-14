@@ -1,0 +1,25 @@
+$alto: #DDDDDD;
+$black: #000000;
+$ocean-green: #42B883;
+$mirage: #1A242F;
+$pickled-bluewood: #35495E;
+$pickled-bluewood-2: #273646;
+$sea-green: #318A62;
+$white: #FFFFFF;
+
+$mobile-s-min: 20em;
+$mobile-l-min: 40em;
+$tablet-min: 48em;
+$laptop-s-min: 64em;
+$laptop-m-min: 75em;
+$laptop-l-min: 90em;
+$laptop-xl-min: 120em;
+
+$breakpoints: (
+  'mobile-s-min': (min-width: $mobile-s-min),
+  'tablet-min': (min-width: $tablet-min),
+  'laptop-s-min': (min-width: $laptop-s-min),
+  'laptop-m-min': (min-width: $laptop-m-min),
+  'laptop-l-min': (min-width: $laptop-l-min),
+  'laptop-xl-min': (min-width: $laptop-xl-min),
+) !default;
