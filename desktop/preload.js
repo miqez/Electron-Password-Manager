@@ -1,7 +1,16 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
-const send = [];
-const receive = [];
+const send = [
+  'file-upload',
+];
+
+const receive = [
+  'file-upload-success',
+  'file-upload-cancel',
+  'file-upload-read-failure',
+  'file-upload-dialog-failure',
+];
+
 const invoke = [];
 
 contextBridge.exposeInMainWorld('electron', {

@@ -34,8 +34,31 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'ElectronHome',
+  mounted() {
+    window.electron.receive('file-upload-success', (data) => {
+      let json;
+
+      try {
+        json = JSON.parse(data);
+
+        this.setJson(json);
+
+        this.$router.push({ name: 'Home' });
+      } catch (error) { return; }
+    });
+  },
+  methods: {
+    ...mapMutations('file', [
+      'setJson',
+    ]),
+    upload() {
+      window.electron.send('file-upload');
+    },
+  },
 };
 </script>
 

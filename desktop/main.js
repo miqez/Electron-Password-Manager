@@ -5,8 +5,8 @@ const { NODE_ENV } = require(
   path.resolve('config'),
 );
 const reload = require('electron-reload');
-const { app, BrowserWindow } = require('electron');
-const { handleLoadURL } = require('./handlers');
+const { app, BrowserWindow, ipcMain } = require('electron');
+const { handleUpload, handleLoadURL } = require('./handlers');
 
 const isDev = () => !app.isPackaged && NODE_ENV === 'development';
 
@@ -45,6 +45,10 @@ app.on('ready', () => {
     if (!BrowserWindow.getAllWindows().length) {
       createWindow();
     }
+  });
+
+  ipcMain.on('file-upload', () => {
+    handleUpload(mainWindow);
   });
 
   createWindow();
