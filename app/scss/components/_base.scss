@@ -8,3 +8,19 @@ html {
   box-sizing: border-box;
   font-family: 'Lato', sans-serif;
 }
+
+.section {
+  @extend %section;
+
+  &--no-padding {
+    padding: unset;
+  }
+}
+
+.wrapper {
+  @extend %wrapper;
+}
+
+.visuallyhidden {
+  @extend %visuallyhidden;
+}
