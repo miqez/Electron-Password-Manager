@@ -25,7 +25,7 @@
       </p>
       <router-link
         class="home__button home__button--create"
-        :to="{ name: 'Home' }"
+        :to="{ name: 'Manager' }"
       >
         Create new
       </router-link>
@@ -47,7 +47,7 @@ export default {
 
         this.setJson(json);
 
-        this.$router.push({ name: 'Home' });
+        this.$router.push({ name: 'Manager' });
       } catch (error) { return; }
     });
   },
