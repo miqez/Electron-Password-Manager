@@ -7,6 +7,7 @@ export default {
   },
   getters: {
     json: ({ json }) => json,
+    isJsonEmpty: ({ json }) => !Object.keys(json).length,
   },
   mutations: {
     setJson(state, payload) {

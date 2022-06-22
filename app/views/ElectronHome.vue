@@ -76,16 +76,10 @@ export default {
   }
 
   &__button {
-    border: none;
+    @extend %button;
+
     color: $white;
-    cursor: pointer;
-    display: block;
-    font-size: 1.25rem;
-    margin-left: auto;
-    margin-right: auto;
     max-width: 150px;
-    outline: none;
-    padding: .25em .75em;
     text-align: center;
     text-decoration: none;
 
